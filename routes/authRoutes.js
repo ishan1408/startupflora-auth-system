@@ -20,7 +20,6 @@ router.post('/login', loginUser);
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 
-// Protected
 router.get('/users', extractUser, checkPermission('viewAllUsers'), getAllUsers);        
 router.get('/users/:id', extractUser, checkPermission('view_user'), getUserById);  
 router.patch('/users/:id', extractUser, checkPermission('edit_user'), updateUser);  

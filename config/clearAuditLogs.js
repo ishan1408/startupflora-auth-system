@@ -12,7 +12,7 @@ const clearLogs = async () => {
     console.log(`✅ Cleared ${result.deletedCount} audit logs.`);
     process.exit(0);
   } catch (err) {
-    console.error('❌ Error clearing audit logs:', err);
+    console.error('Error clearing audit logs:', err);
     process.exit(1);
   }
 };
