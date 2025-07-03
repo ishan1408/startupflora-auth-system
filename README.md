@@ -23,6 +23,3 @@ A secure Node.js + MongoDB backend for user registration, role-based access, and
 git clone <repo-url>
 cd startupflora-auth
 npm install
-cp .env.example .env
-npm run seed  # seeds roles and departments
-npm run dev
