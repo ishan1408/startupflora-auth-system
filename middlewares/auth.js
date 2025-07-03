@@ -64,14 +64,14 @@ const isAdmin = async (req, res, next) => {
 
 const isHRorAdmin = async (req, res, next) => {
   await extractUser(req, res, async () => {
-    if (!req.user || !['admin', 'hr'].includes(req.user.role.name)) {
+    if (!req.user || ![ 'hr'].includes(req.user.role.name)) {
       await AuditLog.create({
         userId: req.user?._id,
         action: 'unauthorized_access',
         performedBy: req.user?._id,
         details: { message: 'HR/Admin-only route access attempt' }
       });
-      return res.status(403).json({ message: 'HR or Admin only' });
+      return res.status(403).json({ message: 'HR only' });
     }
     next();
   });
