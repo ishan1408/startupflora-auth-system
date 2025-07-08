@@ -64,7 +64,7 @@ const isAdmin = async (req, res, next) => {
 
 const isHRorAdmin = async (req, res, next) => {
   await extractUser(req, res, async () => {
-    if (!req.user || ![ 'hr'].includes(req.user.role.name)) {
+    if (!req.user || !['admin', 'hr'].includes(req.user.role.name)) {
       await AuditLog.create({
         userId: req.user?._id,
         action: 'unauthorized_access',
