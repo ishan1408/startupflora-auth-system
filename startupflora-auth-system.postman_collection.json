@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "b116660d-8928-4a4f-a0b4-28bf7031c218",
+		"name": "startupflora-auth-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43970151",
+		"_collection_link": "https://ishanjain-9609417.postman.co/workspace/Ishan-Jain's-Workspace~0d96948d-3e31-4989-8127-d8985979d94f/collection/43970151-b116660d-8928-4a4f-a0b4-28bf7031c218?action=share&source=collection_link&creator=43970151"
+	},
+	"item": [
+		{
+			"name": "Post Departments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Finance\",\r\n  \"description\": \"Handles all Finance development and technical infrastructure.\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/departments"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Departments",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/departments"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Documents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Phyical Edu.\",\r\n  \"description\": \"Handles all Phyical development and technical infrastructure.\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/686b84d1f96d1a45b7817ebc"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Departments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Phyical Edu.\",\r\n  \"description\": \"Handles all SST development and technical infrastructure.\"\r\n}\r\n"
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/departments/686b84d1f96d1a45b7817ebc"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"employee\",\r\n      \"defaultPermissions\": [\r\n        \"viewProfile\",\r\n        \"updateProfile\",\r\n        \"submitLeaveRequest\",\r\n        \"viewCompanyAnnouncements\"\r\n      ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/roles"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Roles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"junior_developer\",\r\n  \"defaultPermissions\": [\r\n    \"viewAllUsers\",\r\n    \"view_user\",\r\n    \"edit_user\"\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/roles"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Roles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"defaultPermissions\":[\r\n        \"viewProfile\",\r\n        \"updateProfile\",\r\n        \"submitLeaveRequest\",\r\n        \"viewCompanyAnnouncements\",\r\n        \"viewEmployees\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{API_URL}}/api/roles/68623928d63e9a605da08bbc"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Users Registeration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Manish Sharma\",\r\n  \"email\": \"manish@startupflora.com\",\r\n  \"password\": \"123456\",\r\n  \"role\":\"employee\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Amit Sharma\",\r\n  \"email\": \"amit@startupflora.com\",\r\n  \"password\": \"1234566\"\r\n}\r\n"
+				},
+				"url": "{{API_URL}}/api/auth/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pending Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sarita\",\r\n  \"email\": \"ishan@startupflora.com\",\r\n  \"password\": \"123456\",\r\n  \"role\":\"hr\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{API_URL}}/api/hr/pending-users"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/users/68636a8ede77b3fc1970ee3f"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Approve Request",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/hr/approve/68623bbd7341f7415c37c2c9"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Reject Request",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/hr/reject/686272f647cf7607e40674e9"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"isha@startupflora.com\",\r\n  \"password\": \"1234567\",\r\n  \"deviceInfo\": \"Windows 11 - Chrome\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sessions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/sessions"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Sessions (Logout)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/sessions/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"aman@startupflora.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/forgot-password"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Password Reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"ishan@startupflora.com\", \r\n    \"otpCode\":\"SWO6XG\", \r\n    \"newPassword\":\"1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/auth/reset-password"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Permissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"overrides\": [\r\n    {\r\n      \"permissionKey\": \"delete_user\",\r\n      \"allow\": true\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://startupflora-auth-system.onrender.com/api/permissions/6864e5cfad27c68438913f36"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete other user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://startupflora-auth-system.onrender.com/api/permissions/users/6864e4a7ad27c68438913f1b"
+			},
+			"response": []
+		}
+	]
+}
