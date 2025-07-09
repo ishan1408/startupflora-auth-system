@@ -316,6 +316,7 @@ exports.forgotPassword = async (req, res) => {
     }
 
     const otpCode = generateOTP();
+    console.log(`OTP for ${email}: ${otpCode}`);
     const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
 
     user.otp = {
@@ -325,8 +326,6 @@ exports.forgotPassword = async (req, res) => {
     };
 
     await user.save();
-
-    console.log(`🔐 OTP for ${email}: ${otpCode}`);
 
     await AuditLog.create({
       userId: user._id,
