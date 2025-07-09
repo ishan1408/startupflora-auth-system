@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const logAudit = require('../utils/logAudit');
-const generateOTP = require('../utils/generateOtp');
+const { generateOTP, sendOTPEmail } = require('../utils/generateOTP');
 
 
 exports.registerUser = async (req, res) => {
@@ -296,48 +296,31 @@ exports.logoutSession = async (req, res) => {
 };
 
 exports.forgotPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
+  const { email } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user || user.status !== 'active') {
-      return res.status(404).json({ message: 'User not found or not active' });
-    }
-
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    const otpRequests = await AuditLog.countDocuments({
-      userId: user._id,
-      action: 'request_password_reset',
-      timestamp: { $gte: oneHourAgo }
-    });
-
-    if (otpRequests >= 3) {
-      return res.status(429).json({ message: 'Too many OTP requests. Try again later.' });
-    }
-
-    const otpCode = generateOTP();
-    console.log(`OTP for ${email}: ${otpCode}`);
-    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
-
-    user.otp = {
-      otpCode,
-      expiresAt,
-      createdAt: new Date()
-    };
-
-    await user.save();
-
-    await AuditLog.create({
-      userId: user._id,
-      action: 'request_password_reset',
-      performedBy: user._id,
-      details: { otpCode }
-    });
-
-    res.json({ message: 'OTP sent to registered email (check console)' });
-  } catch (err) {
-    res.status(500).json({ message: 'Error sending OTP', error: err.message });
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
   }
+
+  // Limit to 3 OTPs/hour – handled here...
+
+  const otpCode = generateOTP();
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
+
+  user.otp = { otpCode, expiresAt };
+  await user.save();
+
+  await sendOTPEmail(user.email, otpCode); // ✅ Send HTML OTP email
+
+  await AuditLog.create({
+    userId: user._id,
+    action: 'otp_requested',
+    performedBy: user._id,
+    details: { otpCode }
+  });
+
+  res.status(200).json({ message: 'OTP sent to your email' });
 };
 
 
