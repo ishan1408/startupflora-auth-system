@@ -303,7 +303,6 @@ exports.forgotPassword = async (req, res) => {
     return res.status(404).json({ message: 'User not found' });
   }
 
-  // Limit to 3 OTPs/hour – handled here...
 
   const otpCode = generateOTP();
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
@@ -311,7 +310,7 @@ exports.forgotPassword = async (req, res) => {
   user.otp = { otpCode, expiresAt };
   await user.save();
 
-  await sendOTPEmail(user.email, otpCode); // ✅ Send HTML OTP email
+  await sendOTPEmail(user.email, otpCode); 
 
   await AuditLog.create({
     userId: user._id,

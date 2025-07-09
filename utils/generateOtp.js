@@ -39,9 +39,9 @@ async function sendOTPEmail(toEmail, otp) {
       subject: 'Your OTP for Password Reset',
       html: htmlTemplate
     });
-    console.log(`📧 OTP email sent to ${toEmail}`);
+    console.log(`OTP email sent to ${toEmail}`);
   } catch (err) {
-    console.error('❌ Failed to send OTP email:', err.message);
+    console.error('Failed to send OTP email:', err.message);
   }
 }
 
