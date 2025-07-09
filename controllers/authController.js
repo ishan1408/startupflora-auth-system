@@ -72,8 +72,10 @@ exports.loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials or unapproved user' });
     }
 
+    // Get full user doc for password and session updates
     const dbUser = await User.findById(aggUser._id);
 
+    // ✅ Fix here: use dbUser for password check
     const isMatch = await bcrypt.compare(password, dbUser.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Incorrect password' });
