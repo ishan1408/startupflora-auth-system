@@ -34,7 +34,7 @@ async function sendOTPEmail(toEmail, otp) {
 
   try {
     await transporter.sendMail({
-      from: `"StartupFlora Auth System" <${process.env.EMAIL_USER}>`,
+      from: `"StartupFlora" <${process.env.EMAIL_USER}>`,
       to: toEmail,
       subject: 'Your OTP for Password Reset',
       html: htmlTemplate

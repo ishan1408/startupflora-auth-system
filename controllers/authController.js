@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const logAudit = require('../utils/logAudit');
-const { generateOTP, sendOTPEmail } = require('../utils/generateOTP');
+const { generateOTP, sendOTPEmail } = require('../utils/generateOtp');
 
 
 exports.registerUser = async (req, res) => {
